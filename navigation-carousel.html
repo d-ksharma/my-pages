@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Sintony:400,700&subset=latin-ext' rel='stylesheet'
+        type='text/css'>
+
+  
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+        
+	color: #e5e5e5;
+	font-size: 12px;
+	background: #bfbfbf;
+	line-height: 1;
+}
+       .carousel-section{
+        height: 80vh;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            font-family: 'Sintony', sans-serif;
+       }
+        
+        main {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .item {
+            width: 200px;
+            height: 300px;
+            list-style-type: none;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+            background-position: center;
+            background-size: cover;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(255, 255, 255, 0.3) inset;
+            transition: transform 0.1s, left 0.75s, top 0.75s, width 0.75s, height 0.75s;
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                transform: none;
+                border-radius: 0;
+                box-shadow: none;
+                opacity: 1;
+            }
+
+            &:nth-child(3) {
+                left: 50%;
+            }
+
+            &:nth-child(4) {
+                left: calc(50% + 220px);
+            }
+
+            &:nth-child(5) {
+                left: calc(50% + 440px);
+            }
+
+            &:nth-child(6) {
+                left: calc(50% + 660px);
+                opacity: 0;
+            }
+
+            &:nth-child(7) {
+                /* left: calc(50% + 880px); */
+                opacity: 0;
+            }
+        }
+
+        .content {
+            width: min(30vw, 400px);
+            position: absolute;
+            top: 50%;
+            left: 3rem;
+            transform: translateY(-50%);
+            font: 400 0.85rem helvetica, sans-serif;
+            color: white;
+            text-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            display: none;
+
+            & .title {
+                font-family: 'arial-black';
+                text-transform: uppercase;
+            }
+
+            & .description {
+                line-height: 1.7;
+                margin: 1rem 0 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            & button {
+                width: fit-content;
+                background-color: rgba(0, 0, 0, 0.1);
+                color: white;
+                border: 2px solid white;
+                border-radius: 0.25rem;
+                padding: 0.75rem;
+                cursor: pointer;
+            }
+        }
+
+        .item:nth-of-type(2) .content {
+            display: block;
+            animation: show 0.75s ease-in-out 0.3s forwards;
+        }
+
+        @keyframes show {
+            0% {
+                filter: blur(5px);
+                transform: translateY(calc(-50% + 75px));
+            }
+
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+
+        .nav {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            user-select: none;
+
+            & .btn {
+                background-color: rgba(255, 255, 255, 0.5);
+                color: rgba(0, 0, 0, 0.7);
+                border: 2px solid rgba(0, 0, 0, 0.6);
+                margin: 0 0.25rem;
+                padding: 0.75rem;
+                border-radius: 50%;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                }
+            }
+        }
+
+        @media (width > 650px) and (width < 900px) {
+            .content {
+                & .title {
+                    font-size: 1rem;
+                }
+
+                & .description {
+                    font-size: 0.7rem;
+                }
+
+                & button {
+                    font-size: 0.7rem;
+                }
+            }
+
+            .item {
+                width: 160px;
+                height: 270px;
+
+                &:nth-child(3) {
+                    left: 50%;
+                }
+
+                &:nth-child(4) {
+                    left: calc(50% + 170px);
+                }
+
+                &:nth-child(5) {
+                    left: calc(50% + 340px);
+                }
+
+                &:nth-child(6) {
+                    left: calc(50% + 510px);
+                    opacity: 0;
+                }
+
+                &:nth-child(7) {
+                    /* left: calc(50% + 680px); */
+                    opacity: 0;
+                }
+            }
+        }
+
+        @media (width < 650px) {
+            .content {
+                & .title {
+                    font-size: 0.9rem;
+                }
+
+                & .description {
+                    font-size: 0.65rem;
+                }
+
+                & button {
+                    font-size: 0.7rem;
+                }
+            }
+
+            .item {
+                width: 130px;
+                height: 220px;
+
+                &:nth-child(3) {
+                    left: 50%;
+                }
+
+                &:nth-child(4) {
+                    left: calc(50% + 140px);
+                }
+
+                &:nth-child(5) {
+                    left: calc(50% + 280px);
+                }
+
+                &:nth-child(6) {
+                    left: calc(50% + 420px);
+                    opacity: 0;
+                }
+
+                &:nth-child(7) {
+                    /* left: calc(50% + 560px); */
+                    opacity: 0;
+                }
+            }
+        }
+/* navbar style */
+
+ 
+
+        
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+header h2 {
+	margin: 25px 10px;
+font-size: 28px;
+text-align: center;
+color: cornsilk;
+}
+.container {
+	margin: 10px auto;
+	display: table;
+	min-width: 800px;
+	width: 100%;
+}
+.container:after, .container:before {
+	content: "" clear : both;
+}
+nav.menu {
+	background: coral;
+	position: relative;
+	min-height: 45px;
+	height: 100%;
+}
+
+.menu > ul > li {
+	list-style: none;
+	display: inline-block;
+	color: #fff;
+	line-height: 45px;
+	
+}
+.menu > ul li a, .xs-menu li a {
+	text-decoration: none;
+	color: #fff;
+	 display:block;
+	 padding: 0px 24px;
+}
+.menu > ul li a:hover {
+	background:#444;
+	color: #fff;
+	transition-duration: 0.3s;
+	-moz-transition-duration: 0.3s;
+	-webkit-transition-duration: 0.3s;
+}
+.active{
+	background:#444 !important;
+	
+}
+.displaynone{
+	display: none;
+}
+.xs-menu-cont{
+display:none;
+}
+.xs-menu-cont > a {
+    background: none repeat scroll 0 0 #ff7f50;
+    border-radius: 3px;
+    padding: 3px 6px;
+	display: block;
+	border-bottom:1px solid #E67248;
+	    box-shadow: 0 1px 2px #e67248;
+		-webkit-box-shadow: 0 1px 2px #e67248;
+		-moz-box-shadow: 0 1px 2px #e67248;
+}
+.xs-menu-cont > a:hover{
+ cursor: pointer;
+}
+  
+.xs-menu li {
+color: #fff;
+padding: 14px 30px;
+border-bottom: 1px solid #ccc;
+background: #FF7F50;
+
+}
+.xs-menu  a{
+text-decoration:none;
+}
+
+.mega-menu {
+   background: none repeat scroll 0 0 #888;
+    left: 0;
+    margin-top: 3px;
+    position: absolute;
+    width: 100%;
+	padding:15px;
+	display:none;
+	 transition-duration: 0.9s;
+    z-index: 999999;
+}
+#menutoggle i {
+    color: #fff;
+    font-size: 33px;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.mm-6column:after, .mm-6column:before, .mm-3column:after, .mm-3column:before{
+content:"";
+display:table;
+clear:both;
+
+
+}
+.mm-6column, .mm-3column {
+ float: left;
+ position: relative;
+ }
+.mm-6column {
+    width: 50%;
+}
+.mm-3column {
+        width: 33%;
+}
+.responsive-img {
+    display: block;
+    max-width: 100%;
+
+}
+.left-images{
+margin-right:25px;
+}
+ .left-images, .left-categories-list {
+   float: left;
+}
+.categories-list li {
+    display: block;
+    line-height: normal;
+    margin: 0;
+    padding: 5px 0;
+}
+.categories-list li :hover{
+		background:inherit !important;
+}
+.left-images > p {
+    background: none repeat scroll 0 0 #ff7f50;
+    display: block;
+    font-size: 18px;
+    line-height: normal;
+    margin: 0;
+    padding: 5px 14px;
+}
+.categories-list span {
+    font-size: 18px;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+}
+.mm-view-more{
+	background: none repeat scroll 0 0 #ff7f50;
+    color: #fff;
+    display: inline !important;
+    line-height: normal;
+    padding: 5px 8px !important;
+	margin-top:10px;
+}
+.display-on{
+display:block;
+ transition-duration: 0.9s;
+}
+.drop-down > a:after{
+content:"\f103";
+color:#fff;
+font-family: FontAwesome;
+font-style: normal;
+margin-left: 5px;
+ 
+
+}
+
+ @media (max-width: 600px) {
+.menu {
+ display:none;
+ }
+ .xs-menu li a {
+
+	 padding:0px;
+}
+ .xs-menu-cont{
+ display:block ;
+ }
+ }
+
+
+
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+
+            <h2>Responsive Menu</h2>
+
+        </header>
+
+        <div class="xs-menu-cont">
+            <a id="menutoggle"><i class="fa fa-align-justify"></i> </a>
+            <nav class="xs-menu displaynone">
+                <ul>
+                    <li class="active">
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Team</a>
+                    </li>
+                    <li>
+                        <a href="#">Portfolio</a>
+                    </li>
+                    <li>
+                        <a href="#">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <nav class="menu">
+            <ul>
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li class="drop-down">
+                    <a href="#">Products</a>
+
+                    <div class="mega-menu fadeIn animated ">
+
+                        <div class="mm-3column">
+
+                            <span class="categories-list">
+                                <ul>
+                                    <span>Computer</span>
+                                    <li>Desktops</li>
+                                    <li>Laptops</li>
+                                    <li>Tablets</li>
+                                    <li>Monitors</li>
+                                    <li>Networking Printers</li>
+                                    <li>Scanners</li>
+                                    <li>Jumpers & Cardigans</li>
+                                    <!-- <li><a class="mm-view-more" href="#">View more →</a></li> -->
+                                </ul>
+                            </span>
+
+                        </div>
+                        <div class="mm-3column">
+                            <span class="categories-list">
+                                <ul>
+                                    <span>TV & Video</span>
+                                    <li>LED TVs
+                                    <li>Plasma TVs
+                                    <li>3D TVs
+                                    <li>DVD & Blu-ray Players
+                                    <li>Home Theater Systems
+                                    <li>Cell Phones
+                                    <li>Apple iPhone
+                                        <!-- <li><a class="mm-view-more" href="#">View more →</a></li> -->
+                                </ul>
+                            </span>
+                        </div>
+                        <div class="mm-3column">
+                            <span class="categories-list">
+                                <ul>
+                                    <span>Car Electronics</span>
+                                    <li>GPS & Navigation</li>
+                                    <li>In-Dash Stereos</li>
+                                    <li>Speakers</li>
+                                    <li>Subwoofers</li>
+                                    <li>Amplifiers</li>
+                                    <li>MP3 Players</li>
+                                    <li>iPods</li>
+                                    <!-- <li><a class="mm-view-more" href="#">View more →</a></li> -->
+                                </ul>
+                            </span>
+                        </div>
+                    </div>
+
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.mywebtricks.com/">Contact</a>
+                </li>
+                <li style="float:right;">
+                    <a href="http://www.mywebtricks.com/">Go my Blog</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <div>
+
+    </div>
+    <section class="carousel-section">
+        <main>
+            <ul class='slider'>
+                <li class='item'
+                    style="background-image: url('https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Lossless Youths"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' style="background-image: url('https://i.redd.it/tc0aqpv92pn21.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Estrange Bond"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item'
+                    style="background-image: url('https://wharferj.files.wordpress.com/2015/11/bio_north.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"The Gate Keeper"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' style="background-image: url('https://images7.alphacoders.com/878/878663.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Last Trace Of Us"</h2>
+                        <p class='description'>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis
+                            inventore praesentium nisi. Id laboriosam ipsam enim.
+                        </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item'
+                    style="background-image: url('https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"Urban Decay"</h2>
+                        <p class='description'>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis
+                            inventore praesentium nisi. Id laboriosam ipsam enim.
+                        </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"The Migration"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+                <li class='item' style="background-image: url('https://da.se/app/uploads/2015/09/simon-december1994.jpg')">
+                    <div class='content'>
+                        <h2 class='title'>"The Migration"</h2>
+                        <p class='description'> Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit. Tempore fuga voluptatum, iure corporis inventore
+                            praesentium nisi. Id laboriosam ipsam enim. </p>
+                        <button>Read More</button>
+                    </div>
+                </li>
+            </ul>
+            <nav class='nav'>
+                <ion-icon class='btn prev' name="arrow-back-outline"></ion-icon>
+                <ion-icon class='btn next' name="arrow-forward-outline"></ion-icon>
+            </nav>
+        </main>
+    </section>
+
+   
+
+    <script>
+
+
+        const slider = document.querySelector('.slider');
+
+        function activate(e) {
+            const items = document.querySelectorAll('.item');
+            e.target.matches('.next') && slider.append(items[0])
+            e.target.matches('.prev') && slider.prepend(items[items.length - 1]);
+        }
+
+        document.addEventListener('click', activate, false);
+
+        $(document).ready(function () {
+            //responsive menu toggle
+            $("#menutoggle").click(function () {
+                $('.xs-menu').toggleClass('displaynone');
+
+            });
+            //add active class on menu
+            $('ul li').click(function (e) {
+                e.preventDefault();
+                $('li').removeClass('active');
+                $(this).addClass('active');
+            });
+            //drop down menu	
+            $(".drop-down").hover(function () {
+                $('.mega-menu').addClass('display-on');
+            });
+            $(".drop-down").mouseleave(function () {
+                $('.mega-menu').removeClass('display-on');
+            });
+
+        });
+    </script>
+</body>
+
+</html>
